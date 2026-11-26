@@ -39,6 +39,7 @@ function HomePage() {
         <p>Update this page by editing</p>
         <code className="codeLink">src/app/_frontend/index.tsx</code>
       </div>
+      <h1 className="text-3xl font-bold underline">Hello Tailwind!</h1>
     </div>
   )
 }

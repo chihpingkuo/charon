@@ -18,11 +18,13 @@
     "test:int": "cross-env NODE_OPTIONS=--no-deprecation vitest run --config ./vitest.config.mts"
   },
   "dependencies": {
+    "@payloadcms/db-postgres": "4.0.0-beta.12",
     "@payloadcms/graphql": "4.0.0-beta.12",
     "@payloadcms/plugin-mcp": "4.0.0-beta.12",
     "@payloadcms/richtext-lexical": "4.0.0-beta.12",
     "@payloadcms/tanstack-start": "4.0.0-beta.12",
     "@payloadcms/ui": "4.0.0-beta.12",
+    "@tailwindcss/vite": "^4.3.5",
     "@tanstack/react-router": "^1.170.44",
     "@tanstack/react-start": "^1.169.1",
     "cross-env": "10.1.0",
@@ -32,8 +34,8 @@
     "react": "19.3.1",
     "react-dom": "19.3.1",
     "srvx": "0.11.21",
-    "vite": "8.3.0",
-    "@payloadcms/db-postgres": "4.0.0-beta.12"
+    "tailwindcss": "^4.3.5",
+    "vite": "8.3.0"
   },
   "devDependencies": {
     "@eslint/js": "9.39.2",

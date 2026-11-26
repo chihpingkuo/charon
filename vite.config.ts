@@ -5,6 +5,7 @@ import rsc from '@vitejs/plugin-rsc'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite'
+import tailwindcss from '@tailwindcss/vite'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
@@ -15,6 +16,7 @@ export default defineConfig(
         rsc(pluginOptions.rsc),
         tanstackStart(pluginOptions.tanstackStart),
         viteReact(pluginOptions.react),
+        tailwindcss(),
       ],
       resolve: {
         alias: {
