@@ -179,7 +179,7 @@ export interface Config {
     'payload-llm-instructions': PayloadLlmInstructionsSelect<false> | PayloadLlmInstructionsSelect<true>;
   };
   db: {
-    defaultIDType: string;
+    defaultIDType: number;
   };
   fallbackLocale: ('false' | 'none' | 'null') | false | null | 'en' | 'en'[];
   globals: {};
@@ -221,14 +221,14 @@ export interface UserAuthOperations {
  * via the `definition` "users".
  */
 export interface User {
-  id: string;
+  id: number;
   createdBy?: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   } | null;
   updatedBy?: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   } | null;
   updatedAt: string;
   createdAt: string;
@@ -268,17 +268,17 @@ export interface User {
  * via the `definition` "media".
  */
 export interface Media {
-  id: string;
+  id: number;
   alt: string;
-  _h_folders?: (string | null) | Folder;
-  _h_tags?: (string | Tag)[] | null;
+  _h_folders?: (number | null) | Folder;
+  _h_tags?: (number | Tag)[] | null;
   createdBy?: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   } | null;
   updatedBy?: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   } | null;
   updatedAt: string;
   createdAt: string;
@@ -310,16 +310,16 @@ export interface Media {
  * via the `definition` "folders".
  */
 export interface Folder {
-  id: string;
-  _h_folders?: (string | null) | Folder;
+  id: number;
+  _h_folders?: (number | null) | Folder;
   name: string;
   createdBy?: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   } | null;
   updatedBy?: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   } | null;
   updatedAt: string;
   createdAt: string;
@@ -331,16 +331,16 @@ export interface Folder {
  * via the `definition` "tags".
  */
 export interface Tag {
-  id: string;
-  _h_tags?: (string | null) | Tag;
+  id: number;
+  _h_tags?: (number | null) | Tag;
   name: string;
   createdBy?: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   } | null;
   updatedBy?: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   } | null;
   updatedAt: string;
   createdAt: string;
@@ -352,7 +352,7 @@ export interface Tag {
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
-  id: string;
+  id: number;
   key: string;
   data:
     | {
@@ -369,28 +369,28 @@ export interface PayloadKv {
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
-  id: string;
+  id: number;
   document?:
     | ({
         relationTo: 'users';
-        value: string | User;
+        value: number | User;
       } | null)
     | ({
         relationTo: 'media';
-        value: string | Media;
+        value: number | Media;
       } | null)
     | ({
         relationTo: 'folders';
-        value: string | Folder;
+        value: number | Folder;
       } | null)
     | ({
         relationTo: 'tags';
-        value: string | Tag;
+        value: number | Tag;
       } | null);
   globalSlug?: string | null;
   user: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   };
   updatedAt: string;
   createdAt: string;
@@ -400,10 +400,10 @@ export interface PayloadLockedDocument {
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
-  id: string;
+  id: number;
   user: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   };
   key?: string | null;
   value?:
@@ -423,7 +423,7 @@ export interface PayloadPreference {
  * via the `definition` "payload-migrations".
  */
 export interface PayloadMigration {
-  id: string;
+  id: number;
   name?: string | null;
   batch?: number | null;
   updatedAt: string;
@@ -442,11 +442,11 @@ export interface PayloadLlmInstruction {
   systemInstructions?: LexicalRichText<LexicalNodes_3DE324E4> | null;
   createdBy?: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   } | null;
   updatedBy?: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   } | null;
   updatedAt: string;
   createdAt: string;
