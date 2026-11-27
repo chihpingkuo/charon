@@ -358,6 +358,7 @@ export interface Tag {
 export interface Post {
   id: number;
   title: string;
+  slug: string;
   createdBy?: {
     relationTo: 'users';
     value: number | User;
@@ -600,6 +601,7 @@ export interface TagsSelect<T extends boolean = true> {
  */
 export interface PostsSelect<T extends boolean = true> {
   title?: T;
+  slug?: T;
   createdBy?: T;
   updatedBy?: T;
   updatedAt?: T;

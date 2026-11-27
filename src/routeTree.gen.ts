@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './app/__root'
 import { Route as FrontendRouteImport } from './app/_frontend'
 import { Route as PayloadRouteImport } from './app/_payload'
 import { Route as FrontendIndexRouteImport } from './app/_frontend/index'
+import { Route as FrontendPostsSlugRouteImport } from './app/_frontend/posts.$slug'
 import { Route as PayloadAdminIndexRouteImport } from './app/_payload/admin.index'
 import { Route as PayloadAdminSplatRouteImport } from './app/_payload/admin.$'
 import { Route as PayloadApiSplatRouteImport } from './app/_payload/api.$'
@@ -27,6 +28,11 @@ const PayloadRoute = PayloadRouteImport.update({
 const FrontendIndexRoute = FrontendIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => FrontendRoute,
+} as any)
+const FrontendPostsSlugRoute = FrontendPostsSlugRouteImport.update({
+  id: '/posts/$slug',
+  path: '/posts/$slug',
   getParentRoute: () => FrontendRoute,
 } as any)
 const PayloadAdminIndexRoute = PayloadAdminIndexRouteImport.update({
@@ -47,12 +53,14 @@ const PayloadApiSplatRoute = PayloadApiSplatRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof FrontendIndexRoute
+  '/posts/$slug': typeof FrontendPostsSlugRoute
   '/admin/$': typeof PayloadAdminSplatRoute
   '/api/$': typeof PayloadApiSplatRoute
   '/admin/': typeof PayloadAdminIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof FrontendIndexRoute
+  '/posts/$slug': typeof FrontendPostsSlugRoute
   '/admin/$': typeof PayloadAdminSplatRoute
   '/api/$': typeof PayloadApiSplatRoute
   '/admin': typeof PayloadAdminIndexRoute
@@ -62,20 +70,22 @@ export interface FileRoutesById {
   '/_frontend': typeof FrontendRouteWithChildren
   '/_payload': typeof PayloadRouteWithChildren
   '/_frontend/': typeof FrontendIndexRoute
+  '/_frontend/posts/$slug': typeof FrontendPostsSlugRoute
   '/_payload/admin/$': typeof PayloadAdminSplatRoute
   '/_payload/api/$': typeof PayloadApiSplatRoute
   '/_payload/admin/': typeof PayloadAdminIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/admin/$' | '/api/$' | '/admin/'
+  fullPaths: '/' | '/posts/$slug' | '/admin/$' | '/api/$' | '/admin/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin/$' | '/api/$' | '/admin'
+  to: '/' | '/posts/$slug' | '/admin/$' | '/api/$' | '/admin'
   id:
     | '__root__'
     | '/_frontend'
     | '/_payload'
     | '/_frontend/'
+    | '/_frontend/posts/$slug'
     | '/_payload/admin/$'
     | '/_payload/api/$'
     | '/_payload/admin/'
@@ -109,6 +119,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FrontendIndexRouteImport
       parentRoute: typeof FrontendRoute
     }
+    '/_frontend/posts/$slug': {
+      id: '/_frontend/posts/$slug'
+      path: '/posts/$slug'
+      fullPath: '/posts/$slug'
+      preLoaderRoute: typeof FrontendPostsSlugRouteImport
+      parentRoute: typeof FrontendRoute
+    }
     '/_payload/admin/': {
       id: '/_payload/admin/'
       path: '/admin'
@@ -135,10 +152,12 @@ declare module '@tanstack/react-router' {
 
 interface FrontendRouteChildren {
   FrontendIndexRoute: typeof FrontendIndexRoute
+  FrontendPostsSlugRoute: typeof FrontendPostsSlugRoute
 }
 
 const FrontendRouteChildren: FrontendRouteChildren = {
   FrontendIndexRoute: FrontendIndexRoute,
+  FrontendPostsSlugRoute: FrontendPostsSlugRoute,
 }
 
 const FrontendRouteWithChildren = FrontendRoute._addFileChildren(
